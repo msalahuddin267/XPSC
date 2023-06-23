@@ -10,7 +10,49 @@ int main()
     cin >> t;
     while(t--)
     {
+        int l, r, x, a, b;
+        cin >> l >> r >> x >> a >> b;
 
+        if(a == b)
+            cout << "0\n";
+        else
+        {
+            if(a < b)
+            {
+                if(b - a >= x)
+                    cout << "1\n";
+
+                else if(a - x >= l)
+                    cout << "2\n";
+
+                else if(b + x <= r)
+                    cout << "2\n";
+
+                else if(a + x <= r && l + x <= b)
+                    cout << "3\n";
+
+                else
+                    cout << "-1\n";
+            }
+
+            else
+            {
+                if(a - b >= x)
+                    cout << "1\n";
+
+                else if(l + x <= b)
+                    cout << "2\n";
+
+                else if(a + x <= r && r - a >= x)
+                    cout << "2\n";
+
+                else if(a - x <= l && r - x >= b)
+                    cout << "3\n";
+
+                else
+                    cout << "-1\n";
+            }
+        }
     }
 }
 
