@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+char convert(int num)
+{
+    return 'a' + num - 1;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -13,14 +18,27 @@ int main()
         int n;
         cin >> n;
 
-        string s;
+        string s, ans;
         cin >> s;
 
-        for(int i = n-1; i >= 0; i++)
+        int i = n-1;
+        while(i >= 0)
         {
-            s[i] = s[i]+49;
+            if(s[i] == '0')
+            {
+                int num = stoi(s.substr(i-2, 2));
+                ans += convert(num);
+                i -= 3;
+            }
+            else
+            {
+                ans += convert(s[i]-'0');
+                i--;
+            }
         }
-        cout <<s;
+
+        reverse(ans.begin(), ans.end());
+        cout << ans << "\n";
     }
 }
 

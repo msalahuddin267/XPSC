@@ -1,14 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define ll long long
 
-vector<int> v[200005];
-int leaf[200005];
+vector<ll> v[200005];
+ll leaf[200005];
 bool visited[200005];
 
-int count_leaf(int src)
+ll count_leaf(ll src)
 {
     visited[src] = true;
-    int ans = 0;
+    ll ans = 0;
     bool l = true;
 
     for(int i = 0; i < v[src].size(); i++)
@@ -35,17 +36,17 @@ int main()
     cin >> t;
     while(t--)
     {
-        int n;
+        ll n;
         cin >> n;
 
-        int e = n - 1;
+        ll e = n - 1;
 
         memset(visited, false, sizeof(visited));
         memset(leaf, 0, sizeof(leaf));
 
         while(e--)
         {
-            int a, b;
+            ll a, b;
             cin >> a >> b;
             v[a].push_back(b);
             v[b].push_back(a);
@@ -53,12 +54,12 @@ int main()
 
         count_leaf(1);
 
-        int q;
+        ll q;
         cin >> q;
 
         while(q--)
         {
-            int x, y;
+            ll x, y;
             cin >> x >> y;
             cout << leaf[x] * leaf[y] << "\n";
         }
