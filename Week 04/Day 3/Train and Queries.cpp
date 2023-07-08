@@ -15,27 +15,35 @@ int main()
         int n, q;
         cin >> n >> q;
 
-        vector<int> v(n);
+        map<int, multiset<int>> mp;
+
         for(int i = 0; i < n; i++)
-            cin >> v[i];
+        {
+            int num;
+            cin >> num;
+            mp[num].insert(i);
+        }
 
         while(q--)
         {
             int a, b;
             cin >> a >> b;
 
-            bool flag = false;
-            auto it_a = find(v.begin(), v.end(), a);
-            auto it_b = find(it_a, v.end(), b);
-
-            if(it_b != v.end())
+            if(mp.find(a) != mp.end())
             {
-                flag = true;
-                break;
+                if(mp.find(b) != mp.end())
+                {
+                    if(*mp[a].begin() < *mp[b].rbegin())
+                        cout << "YES\n";
+
+                    else
+                        cout << "NO\n";
+                }
+
+                else
+                    cout << "NO\n";
             }
 
-            if(flag)
-                cout << "YES\n";
             else
                 cout << "NO\n";
         }
