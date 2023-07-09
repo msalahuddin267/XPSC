@@ -17,17 +17,17 @@ int main()
         for(int i = 0; i < n; i++)
             cin >> v[i];
 
-        for(int i = 0; i < n; i++)
+        int mn = INT_MAX;
+
+        for(int i = n-1; i >= 0; i--)
         {
-            for(int j = i+1; j < n; j++)
-            {
-                if(v[i] > v[j])
-                {
-                    ans++;
-                    break;
-                }
-            }
+            if(v[i] > mn)
+                ans++;
+
+            else
+                mn = v[i];
         }
+
         cout << ans << "\n";
     }
 }
