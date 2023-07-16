@@ -11,24 +11,17 @@ int main()
     cin >> t;
     while(t--)
     {
-        ll n, k, od;
+        ll n, k;
         cin >> n >> k;
 
         if(k * 2 <= n)
         {
-            int rem = n - (k-1)*2;
+            int rem = ((n/2) + (n%2)) - k;
 
             if(rem & 1)
-                od = rem / 2 + 1;
-            else
-                od = rem / 2;
-
-
-            if(od & 1)
-                cout << "YES\n";
-
-            else
                 cout << "NO\n";
+            else
+                cout << "YES\n";
         }
         else
             cout << "NO\n";

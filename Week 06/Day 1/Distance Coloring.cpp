@@ -12,6 +12,20 @@ int main()
     cin >> t;
     while(t--)
     {
-        int n;
+        ll n, k, ans = 1;
+        cin >> n >> k;
+
+        if(n >= k)
+        {
+            for(int i = 1; i <= k; i++)
+                ans = (ans * i) % mod;
+        }
+        else
+        {
+            for(int i = k; i > k-n; i--)
+                ans = (ans * i) % mod;
+        }
+
+        cout << ans << "\n";
     }
 }
