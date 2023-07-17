@@ -11,47 +11,27 @@ int main()
     cin >> t;
     while(t--)
     {
-        int n, ck = -1;
+        int n;
         cin >> n;
 
-        vector<int> v;
-        map<int, int> mp;
-        map<int, int> mp2;
+        vector<int> v(n);
 
         for(int i = 0; i < n; i++)
-        {
-            int x;
-            cin >> x;
-            if(x == ck)
-                continue;
-            else
-            {
-                ck = x;
-                v.push_back(x);
-            }
-        }
-
-        n = v.size();
-
-        for(int i = n-1; i > 0; i--)
-        {
-            for(int j = i-1; j >= 0; j--)
-            {
-                mp2[v[i] - v[j]]++;
-
-                if(mp2[v[i] - v[j]] == 1)
-                    mp[v[i] - v[j]]++;
-            }
-            mp2.clear();
-        }
+            cin >> v[i];
 
         bool flag = false;
-        for(auto it : mp)
+        for(int i = 0; i < n; i++)
         {
-            if(it.second >= 2)
+            for(int j = i+1; j < n; j++)
             {
-                flag = true;
-                break;
+                for(int k = j+1; k < n; k++)
+                {
+                    if(v[j] - v[i] == v[k] - v[j])
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
             }
         }
 
