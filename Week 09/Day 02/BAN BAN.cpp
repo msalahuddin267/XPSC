@@ -13,30 +13,18 @@ int main()
         int n;
         cin >> n;
 
-        if(n == 1)
+        int op = n / 2;
+        op += n % 2;
+
+        cout << op << "\n";
+
+        int l = 1, r = n * 3;
+
+        for(int i = 1; i <= op; i++)
         {
-            cout << "1\n";
-            cout << "1 3\n";
-        }
-
-        else if(n == 2)
-        {
-            cout << "1\n";
-            cout << "1 6\n";
-        }
-
-        else
-        {
-            cout << n - 1 << "\n";
-            cout << "1 6\n";
-
-            int l = 4;
-
-            for(int i = 9; i <= n * 3; i += 3)
-            {
-                cout << l << " " << i << "\n";
-                l++;
-            }
+            cout << l << " " << r << "\n";
+            l += 3;
+            r -= 3;
         }
     }
 }
