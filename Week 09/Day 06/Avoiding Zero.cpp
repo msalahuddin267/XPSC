@@ -13,54 +13,52 @@ int main()
         int n;
         cin >> n;
 
-        deque<int> d, ans;
-        int sum = 0;
+        vector<int> pos, neg;
+        int p_sum = 0, n_sum = 0;
 
         for(int i = 0; i < n; i++)
         {
             int a;
             cin >> a;
-            d.push_back(a);
-            sum += a;
+
+            if(a < 0)
+            {
+                n_sum += a;
+                neg.push_back(a);
+            }
+            else
+            {
+                p_sum += a;
+                pos.push_back(a);
+            }
         }
 
-        if(sum == 0)
+        if(p_sum + n_sum == 0)
             cout << "NO\n";
+
         else
         {
             cout << "YES\n";
-            sum = 0;
+            n_sum *= -1;
+            sort(pos.begin(), pos.end(), greater<int>());
 
-            while(d.size())
+            if(p_sum > n_sum)
             {
-                int x = d.front();
-                sum += x;
-                d.pop_front();
+                for(auto it : pos)
+                    cout << it << " ";
 
-                if(sum == 0)
-                {
-                    if(ans.size())
-                    {
-                        sum -= x;
-                        d.push_front(x);
-                        d.push_back(ans.back());
-                        ans.pop_back();
-                    }
-                    else
-                    {
-                        sum -= x;
-                        d.push_back(x);
-                    }
-                }
-
-                else
-                    ans.push_back(x);
+                for(auto it : neg)
+                    cout << it << " ";
             }
+            else
+            {
+                for(auto it : neg)
+                    cout << it << " ";
 
-            for(auto it : ans)
-                cout << it << " ";
+                for(auto it : pos)
+                    cout << it << " ";
+            }
             cout << "\n";
-            ans.clear();
         }
     }
 }
