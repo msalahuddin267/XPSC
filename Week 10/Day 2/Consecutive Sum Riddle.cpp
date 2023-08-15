@@ -2,49 +2,6 @@
 using namespace std;
 #define ll long long
 
-void solve()
-{
-    ll n;
-    cin >> n;
-
-    if(n == 1)
-    {
-        cout << "0 1\n";
-        return;
-    }
-
-    ll i = 0, sum = 0;
-
-    while(1)
-    {
-        i++;
-        sum += i;
-
-        if(sum == n)
-        {
-            cout << 1 << " " << i << "\n";
-            return;
-        }
-
-        if(sum > n)
-            break;
-    }
-
-    ll j = 0;
-
-    while(1)
-    {
-        j--;
-        sum += j;
-
-        if(sum == n)
-        {
-            cout << j << " " << i << "\n";
-            return;
-        }
-    }
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -54,7 +11,27 @@ int main()
     cin >> t;
     while(t--)
     {
-        solve();
+        ll n;
+        cin >> n;
+
+        ll sum = 0, pg = 1, ng = -1;
+
+        while(sum != n)
+        {
+            for(int i = 1; ; i++)
+            {
+                if(i % 2)
+                {
+                    sum += p;
+                    d.push_back(pg);
+                }
+                else
+                {
+                    sum += n;
+                    d.push_front(ng);
+                }
+            }
+        }
     }
 }
 
