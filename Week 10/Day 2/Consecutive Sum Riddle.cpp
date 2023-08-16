@@ -14,24 +14,7 @@ int main()
         ll n;
         cin >> n;
 
-        ll sum = 0, pg = 1, ng = -1;
-
-        while(sum != n)
-        {
-            for(int i = 1; ; i++)
-            {
-                if(i % 2)
-                {
-                    sum += p;
-                    d.push_back(pg);
-                }
-                else
-                {
-                    sum += n;
-                    d.push_front(ng);
-                }
-            }
-        }
+        cout << (n - 1) * -1 << " " << n << "\n";
     }
 }
 
