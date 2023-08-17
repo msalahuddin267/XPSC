@@ -35,23 +35,28 @@ int main()
             continue;
         }
 
-        int temp = 0, gv = 0, i = n / 2 - 1, j = i - 1;
-        while(temp <= k)
+        int i = 0, j = 0, ans = 0, temp = 0;
+
+        while(j < n)
         {
-            if(i < n && temp + v[i] <= k)
+            temp += v[j];
+
+            if(temp <= k)
             {
-                temp += v[i];
-                gv++;
-                i++;
+                ans = max(ans, j - i + 1);
             }
 
-            if(j >= 0 && temp + v[j] <= k)
+            if(temp > k)
             {
-                temp += v[j];
-                gv++;
-                j--;
+                while(temp > k)
+                {
+                    temp -= v[i];
+                    i++;
+                }
             }
+
+            j++;
         }
-        //cout << ans << "\n";
+        cout << n - ans << "\n";
     }
 }
