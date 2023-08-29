@@ -26,8 +26,16 @@ int main()
             {
                 if(r < b)
                 {
-                    ll ans = r + r;
-                    cout << ans << "\n";
+                    if(r + r > b)
+                    {
+                        ll ans = b / 2 + r;
+                        cout << ans << "\n";
+                    }
+                    else
+                    {
+                        ll ans = r + r;
+                        cout << ans << "\n";
+                    }
                 }
                 else
                 {
@@ -40,8 +48,16 @@ int main()
             {
                 if(r < g)
                 {
-                    ll ans = r + r;
-                    cout << ans << "\n";
+                    if(r + r > g)
+                    {
+                        ll ans = g / 2 + r;
+                        cout << ans << "\n";
+                    }
+                    else
+                    {
+                        ll ans = r + r;
+                        cout << ans << "\n";
+                    }
                 }
                 else
                 {
@@ -54,8 +70,16 @@ int main()
             {
                 if(b < r)
                 {
-                    ll ans = b + b;
-                    cout << ans << "\n";
+                    if(b + b > r)
+                    {
+                        ll ans = r / 2 + b;
+                        cout << ans << "\n";
+                    }
+                    else
+                    {
+                        ll ans = b + b;
+                        cout << ans << "\n";
+                    }
                 }
                 else
                 {
@@ -65,6 +89,7 @@ int main()
                 }
             }
         }
+
         else
         {
             ll ans;
@@ -74,12 +99,22 @@ int main()
                 {
                     ans = r - g;
                     r -= ans;
+                    if(b - ans < 0)
+                    {
+                        cout << g + b << "\n";
+                        continue;
+                    }
                     b -= ans;
                 }
                 else
                 {
                     ans = r - b;
                     r -= ans;
+                    if(g - ans < 0)
+                    {
+                        cout << g + b << "\n";
+                        continue;
+                    }
                     g -= ans;
                 }
             }
@@ -89,12 +124,22 @@ int main()
                 {
                     ans = g - r;
                     g -= ans;
+                    if(b - ans < 0)
+                    {
+                        cout << r + b << "\n";
+                        continue;
+                    }
                     b -= ans;
                 }
                 else
                 {
                     ans = g - b;
                     g -= ans;
+                    if(r - ans < 0)
+                    {
+                        cout << r + b << "\n";
+                        continue;
+                    }
                     r -= ans;
                 }
             }
@@ -104,12 +149,22 @@ int main()
                 {
                     ans = b - r;
                     b -= ans;
+                    if(g - ans < 0)
+                    {
+                        cout << g + r << "\n";
+                        continue;
+                    }
                     g -= ans;
                 }
                 else
                 {
                     ans = b - g;
                     b -= ans;
+                    if(r - ans < 0)
+                    {
+                        cout << g + r << "\n";
+                        continue;
+                    }
                     r -= ans;
                 }
             }
@@ -118,13 +173,13 @@ int main()
             {
                 if(r < b)
                 {
-                    ans = r + r;
+                    ans += r + r;
                     cout << ans << "\n";
                 }
                 else
                 {
                     ll m = (b + 2 - 1) / 2;
-                    ans = b + (r - m);
+                    ans += b + (r - m);
                     cout << ans << "\n";
                 }
             }
@@ -132,13 +187,13 @@ int main()
             {
                 if(r < g)
                 {
-                    ans = r + r;
+                    ans += r + r;
                     cout << ans << "\n";
                 }
                 else
                 {
                     ll m = (g + 2 - 1) / 2;
-                    ans = g + (r - m);
+                    ans += g + (r - m);
                     cout << ans << "\n";
                 }
             }
@@ -146,13 +201,13 @@ int main()
             {
                 if(b < r)
                 {
-                    ans = b + b;
+                    ans += b + b;
                     cout << ans << "\n";
                 }
                 else
                 {
                     ll m = (r + 2 - 1) / 2;
-                    ans = r + (b - m);
+                    ans += r + (b - m);
                     cout << ans << "\n";
                 }
             }
