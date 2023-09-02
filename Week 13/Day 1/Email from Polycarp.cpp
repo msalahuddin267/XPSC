@@ -15,6 +15,7 @@ int main()
         cin >> a >> b;
 
         map<char, int> ma, mb;
+        bool flag = true;
 
         for(int i = 0; i < a.size(); i++)
             ma[a[i]]++;
@@ -24,7 +25,27 @@ int main()
 
         for(auto [x, y] : ma)
         {
-            //if(mb.find(x) != )
+            if(mb.find(x) != mb.end())
+            {
+                auto it = mb.find(x);
+                if((*it).second < y)
+                {
+                    flag = false;
+                    break;
+                }
+                else
+                    mb.erase(x);
+            }
+            else
+            {
+                flag = false;
+                break;
+            }
         }
+
+        if(flag && mb.empty())
+            cout << "YES\n";
+        else
+            cout << "NO\n";
     }
 }
