@@ -14,36 +14,63 @@ int main()
         string a, b;
         cin >> a >> b;
 
-        map<char, int> ma, mb;
+        if(a.size() > b.size())
+        {
+            cout << "NO\n";
+            continue;
+        }
+
+        vector<string> va, vb;
         bool flag = true;
 
         for(int i = 0; i < a.size(); i++)
-            ma[a[i]]++;
+        {
+            string s;
+            s += a[i];
+
+            if(i + 1 < a.size() && a[i] == a[i+1])
+            {
+                while(i + 1 < a.size() && a[i] == a[i+1])
+                {
+                    s += a[i+1];
+                    i++;
+                }
+            }
+            va.push_back(s);
+        }
 
         for(int i = 0; i < b.size(); i++)
-            mb[b[i]]++;
-
-        for(auto [x, y] : ma)
         {
-            if(mb.find(x) != mb.end())
+            string s;
+            s += b[i];
+
+            if(i + 1 < b.size() && b[i] == b[i+1])
             {
-                auto it = mb.find(x);
-                if((*it).second < y)
+                while(i + 1 < b.size() && b[i] == b[i+1])
                 {
-                    flag = false;
-                    break;
+                    s += b[i+1];
+                    i++;
                 }
-                else
-                    mb.erase(x);
             }
-            else
+            vb.push_back(s);
+        }
+
+        if(va.size() != vb.size())
+        {
+            cout << "NO\n";
+            continue;
+        }
+
+        for(int i = 0; i < va.size(); i++)
+        {
+            if(va[i].size() > vb[i].size() || va[i].front() != vb[i].front())
             {
                 flag = false;
                 break;
             }
         }
 
-        if(flag && mb.empty())
+        if(flag)
             cout << "YES\n";
         else
             cout << "NO\n";
