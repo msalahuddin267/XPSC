@@ -20,18 +20,21 @@ int main()
         for(int i = 0; i < n; i++)
             cin >> v[i];
 
-        for(int i = 0; i < d; i++)
-            st.insert(v[i]);
+        int ans = INT_MAX;
 
-        int ans = st.size(), j = 0;
-
-        for(int i = d; i < n; i++)
+        for(int i = 0; i <= n - d; i++)
         {
-            st.erase(v[j]);
-            st.insert(v[i]);
+            int j = i, run = d;
+            set<int> st;
+
+            while(run--)
+            {
+                st.insert(v[j]);
+                j++;
+            }
+
             int sz = st.size();
             ans = min(ans, sz);
-            j++;
         }
 
         cout << ans << "\n";
