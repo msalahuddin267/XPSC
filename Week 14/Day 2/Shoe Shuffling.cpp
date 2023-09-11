@@ -32,10 +32,12 @@ int main()
         }
 
         set<int> st;
+        vector<int> ans;
+
         for(int i = 1; i <= n; i++)
             st.insert(i);
 
-        for(int i = 0; i < n; i++)
+        for(int i = n-1; i >= 0; i--)
         {
             if(v[i] == i + 1)
             {
