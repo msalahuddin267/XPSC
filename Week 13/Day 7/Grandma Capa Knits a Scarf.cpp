@@ -12,23 +12,19 @@ int main()
     while(t--)
     {
         int n;
-        cin >> n;
+        string s;
+        cin >> n >> s;
 
-        vector<int> v(n);
-        set<int> st;
-
-        for(int i = 0; i < n; i++)
-            cin >> v[i];
-
-        int i = 0, j = n - 1;
         bool flag = false;
+        int i = 0, j = n - 1, ans = INT_MAX;
+        set<char> st;
 
         while(i < j)
         {
-            if(v[i] != v[j])
+            if(s[i] != s[j])
             {
-                st.insert(v[i]);
-                st.insert(v[j]);
+                st.insert(s[i]);
+                st.insert(s[j]);
                 break;
             }
 
@@ -38,7 +34,7 @@ int main()
 
         if(st.empty())
         {
-            cout << "YES\n";
+            cout << 0 << "\n";
             continue;
         }
 
@@ -46,44 +42,45 @@ int main()
         {
             i = 0, j = n - 1;
             bool f = true;
+            int temp = 0;
 
             while(i < j)
             {
-                if(v[i] == it)
+                if(s[i] == s[j])
                 {
                     i++;
-                    continue;
+                    j++;
                 }
 
-                else if(v[j] == it)
+                else if(s[i] == it)
+                {
+                    i++;
+                    temp++;
+                }
+
+                else if(s[j] == it)
                 {
                     j--;
-                    continue;
+                    temp++;
                 }
 
                 else
                 {
-                    if(v[i] != v[j])
-                    {
-                        f = false;
-                        break;
-                    }
+                    f = false;
+                    break;
                 }
-
-                i++;
-                j--;
             }
 
             if(f)
             {
                 flag = true;
-                break;
+                ans = min(ans, temp);
             }
         }
 
         if(flag)
-            cout << "YES\n";
+            cout << ans << "\n";
         else
-            cout << "NO\n";
+            cout << "-1\n";
     }
 }
