@@ -49,7 +49,7 @@ int main()
                 if(s[i] == s[j])
                 {
                     i++;
-                    j++;
+                    j--;
                 }
 
                 else if(s[i] == it)

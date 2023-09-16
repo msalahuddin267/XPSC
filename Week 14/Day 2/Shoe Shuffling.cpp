@@ -15,54 +15,43 @@ int main()
         cin >> n;
 
         vector<int> v(n);
-        bool flag = false;
-        int one = 0;
+        vector<int> ans(n);
+        map<int, int> mp;
+        bool flag = true;
 
         for(int i = 0; i < n; i++)
         {
             cin >> v[i];
-            if(v[i] == 1)
-                one++;
+            mp[v[i]]++;
         }
 
-        if(v[n-1] >= n || one < 2)
+        for(auto [a, b] : mp)
         {
+            if(b < 2)
+            {
+                flag = false;
+                break;
+            }
+        }
+
+        if(flag)
+        {
+            for(int i = 0; i < n; i++)
+                ans[i] = i + 1;
+
+            for(int i = 0; i < n-1; i++)
+            {
+                if(v[i] == v[i+1])
+                    swap(ans[i], ans[i+1]);
+            }
+
+            for(auto it : ans)
+                cout << it << " ";
+            cout << "\n";
+        }
+
+        else
             cout << "-1\n";
-            continue;
-        }
 
-        set<int> st;
-        vector<int> ans;
-
-        for(int i = 1; i <= n; i++)
-            st.insert(i);
-
-        for(int i = n-1; i >= 0; i--)
-        {
-            if(v[i] == i + 1)
-            {
-                int up = *st.upper_bound(v[i]);
-                cout << up << " ";
-                st.erase(up);
-            }
-            else
-            {
-                int low = *st.lower_bound(v[i]);
-
-                if(low == i + 1)
-                {
-                    int up = *st.upper_bound(low);
-                    cout << up << " ";
-                    st.erase(up);
-                }
-
-                else
-                {
-                    cout << low << " ";
-                    st.erase(low);
-                }
-            }
-        }
-        cout << "\n";
     }
 }
