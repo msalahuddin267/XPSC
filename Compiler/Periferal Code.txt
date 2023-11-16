@@ -1,0 +1,213 @@
+1. LED Blinking :
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(1000);                       // wait for a second
+  digitalWrite(12, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);
+  digitalWrite(13, HIGH);  
+  delay(1000);                       
+  digitalWrite(13, LOW);   
+  delay(1000);
+}
+
+2. Seven Segment Display :
+void setup() {
+  int i;
+  for(i = 1; i <= 7; i++){
+  pinMode(i, OUTPUT);
+  }
+}
+void loop(){
+  zero();
+  one();
+  two();
+  three();
+  four();
+  five();
+  six();
+  seven();
+  eight();
+  nine();
+}
+
+void zero(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 7){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+void one(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 2 || i == 3){
+      digitalWrite(i, HIGH);
+    }
+    else{
+      digitalWrite(i, LOW);
+    }
+  }
+  delay(2000);
+}
+
+void two(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 3 || i == 6){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+void three(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 5 || i == 6){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+void four(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 1 || i == 4 || i == 5){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+void five(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 2 || i == 5){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+void six(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 2){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+void seven(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 1 || i == 2 || i == 3){
+      digitalWrite(i, HIGH);
+    }
+    else{
+      digitalWrite(i, LOW);
+    }
+  }
+  delay(2000);
+}
+
+void eight(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    digitalWrite(i, HIGH);
+  }
+  delay(2000);
+}
+void nine(){
+  int i;
+  for(i = 1; i <= 7; i++){
+    if(i == 5){
+      digitalWrite(i, LOW);
+    }
+    else{
+      digitalWrite(i, HIGH);
+    }
+  }
+  delay(2000);
+}
+
+3. 16*4 LCD Display :
+#include <LiquidCrystal.h>
+// initialize the library by associating any needed LCD interface pin
+const int rs = 13, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 4);
+  // Print a message to the LCD.
+  lcd.setCursor(2, 1);
+  lcd.print("SALAH UDDIN");
+  lcd.setCursor(4, 2);
+  lcd.print("Roll: 57");
+  lcd.setCursor(6, 4);
+  lcd.print("E-84");
+}
+
+4. Scrolling Text in 16*4 LCD Display :
+#include <LiquidCrystal.h>
+// initialize the library by associating any needed LCD interface pin
+// with the arduino pin number it is connected to
+const int rs = 13, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 4);
+  // Print a message to the LCD.
+  lcd.print("SALAH UDDIN 57");
+  delay(1000);
+}
+
+5. Servo Motor Configuration :
+#include <Servo.h>
+int i = 0;    // variable to store the servo position
+void setup() {
+  myservo.attach(4);  // attaches the servo on pin 4 to the servo object
+}
+
+void loop() {
+  for (i = 0; i <= 180; i++) { // goes from 0 degrees to 180 degrees
+    myservo.write(i);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (i = 180; i >= 0; i--) { // goes from 180 degrees to 0 degrees
+    myservo.write(i);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+}
+

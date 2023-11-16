@@ -11,16 +11,32 @@ int main()
     cin >> t;
     while(t--)
     {
-        int n;
+        ll n;
         cin >> n;
 
-        vector<int> v(n);
+        vector<ll> v(n);
+        ll ans = 0;
 
         for(int i = 0; i < n; i++)
+        {
             cin >> v[i];
 
+            if(v[i] > 0)
+                ans += v[i];
+        }
 
+        if(ans == 0)
+        {
+            cout << "0\n";
+            continue;
+        }
 
+        if(v[0] < 0)
+        {
+            if(v[1] > 0)
+                ans = max(ans - v[1], ans + v[0]);
+        }
 
+        cout << ans << "\n";
     }
 }
