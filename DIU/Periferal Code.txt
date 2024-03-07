@@ -23,6 +23,7 @@ void setup() {
   pinMode(i, OUTPUT);
   }
 }
+
 void loop(){
   zero();
   one();
